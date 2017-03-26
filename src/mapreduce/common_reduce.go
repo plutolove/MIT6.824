@@ -39,7 +39,7 @@ func doReduce(
 	// }
 	// file.Close()
 
-	kvs := make(map[string][]string)
+	kvs := make(map[string][]string) // read the reduce file
 	for i := 0; i < nMap; i++ {
 		fname := reduceName(jobName, i, reduceTaskNumber)
 		file, err := os.Open(fname)
@@ -63,7 +63,10 @@ func doReduce(
 			file.Close()
 		}
 	}
-	keys := make([]string, 0)
+
+
+
+	keys := make([]string, 0) // get all keys and sort them
 	for item, _ := range kvs {
 		keys = append(keys, item)
 	}
@@ -76,7 +79,7 @@ func doReduce(
 		return
 	}
 
-	json_encoder := json.NewEncoder(out_file)
+	json_encoder := json.NewEncoder(out_file) //merge and output the result
 
 	for _, item := range keys {
 		json_encoder.Encode(KeyValue{item, reduceF(item, kvs[item])})
