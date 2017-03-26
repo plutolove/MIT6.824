@@ -41,11 +41,9 @@ func doReduce(
 
 	kvs := make(map[string][]string) // read the reduce file
 	for i := 0; i < nMap; i++ {
-		fname := reduceName(jobName, i, reduceTaskNumber)
-		file, err := os.Open(fname)
+		file, err := os.Open(reduceName(jobName, i, reduceTaskNumber))
 		if err != nil {
-			fmt.Println(err)
-			return
+			fmt.Printf("reduce file:%s can't open\n",reduceName(jobName, i, reduceTaskNumber), err)
 		} else {
 			json_decoder := json.NewDecoder(file)
 			for {
@@ -84,5 +82,5 @@ func doReduce(
 	for _, item := range keys {
 		json_encoder.Encode(KeyValue{item, reduceF(item, kvs[item])})
 	}
-	defer out_file.Close()
+	out_file.Close()
 }

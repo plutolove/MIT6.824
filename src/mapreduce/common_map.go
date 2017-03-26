@@ -62,7 +62,7 @@ func doMap(
 	for i := 0; i < nReduce; i++ {
 		tmp, err := os.Create(reduceName(jobName, mapTaskNumber, i))
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println(err, "8899")
 			return
 		} else {
 			files[i] = tmp
@@ -70,17 +70,19 @@ func doMap(
 		}
 	}
 
-	for _, item := range files {
-		defer item.Close()
-	}
+
 
 	for _, item := range kv { // output the key/val to the reduce file
 		hashval := ihash(item.Key)
 		err := json_encoder[hashval % uint32(nReduce)].Encode(item)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println(err, "8888")
 			return
 		}
+	}
+
+	for _, item := range files {
+		item.Close()
 	}
 }
 
