@@ -1,15 +1,17 @@
 <component name="libraryTable">
   <library name="GOPATH &lt;6.824&gt;">
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/../Learn/src/main" />
       <root url="file://$PROJECT_DIR$/../Learn/src/golang.org" />
       <root url="file://$PROJECT_DIR$/../Learn/src/Bit" />
-      <root url="file://$PROJECT_DIR$/../Learn/src/main" />
+      <root url="file://$PROJECT_DIR$/../Learn/src/server" />
       <root url="file://$PROJECT_DIR$/../Learn/src/Exper" />
     </CLASSES>
     <SOURCES>
+      <root url="file://$PROJECT_DIR$/../Learn/src/main" />
       <root url="file://$PROJECT_DIR$/../Learn/src/golang.org" />
       <root url="file://$PROJECT_DIR$/../Learn/src/Bit" />
-      <root url="file://$PROJECT_DIR$/../Learn/src/main" />
+      <root url="file://$PROJECT_DIR$/../Learn/src/server" />
       <root url="file://$PROJECT_DIR$/../Learn/src/Exper" />
     </SOURCES>
     <excluded>
