@@ -38,7 +38,6 @@ func (mr *Master) schedule(phase jobPhase) {
 		go func(taskid int, nfiles int, phase jobPhase) { // create a goroutine for a task
 			defer mutex.Done()
 			debug("DEBUG: current taskNum: %v, nios: %v, phase: %v\n", taskid, nios, phase)
-
 			for {
 				worker_ip := <- mr.registerChannel // get an unuse worker
 
@@ -50,7 +49,6 @@ func (mr *Master) schedule(phase jobPhase) {
 				args.TaskNumber = taskid
 
 				is_success := call(worker_ip, "Worker.DoTask", &args, new(struct{})) // run worker with rpc
-
 				if is_success { // iif is success free the worker and put it in registerChannel, then break the loop
 					go func() {
 						mr.registerChannel <- worker_ip
@@ -58,7 +56,6 @@ func (mr *Master) schedule(phase jobPhase) {
 					break
 				}
 			}
-
 		}(i, nios, phase)
 	}
 
